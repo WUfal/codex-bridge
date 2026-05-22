@@ -13,8 +13,8 @@
     "desktop:app": "electron .",
     "package:win": "cross-env CSC_IDENTITY_AUTO_DISCOVERY=false electron-builder --win portable",
     "package:win:dir": "electron-packager . \"CodexBridge\" --platform=win32 --arch=x64 --out=release-packager --overwrite --prune=true --ignore=\"^/(release|release-packager|dist|exports|tmp)\"",
-    "package:mac": "electron-builder --mac dmg zip",
-    "package:linux": "electron-builder --linux AppImage deb"
+    "package:mac": "electron-builder --mac zip",
+    "package:linux": "electron-builder --linux zip"
   },
   "engines": {
     "node": ">=20"
@@ -41,6 +41,16 @@
       "signAndEditExecutable": false,
       "target": [
         "portable"
+      ]
+    },
+    "mac": {
+      "target": [
+        "zip"
+      ]
+    },
+    "linux": {
+      "target": [
+        "zip"
       ]
     },
     "portable": {

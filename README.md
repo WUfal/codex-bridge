@@ -36,8 +36,8 @@ CodexBridge 是中文桌面应用，不是网页工具。
 计划提供：
 
 - Windows：`CodexBridge-Desktop.exe`
-- macOS：`.dmg` 和 `.zip`
-- Linux：`.AppImage` 和 `.deb`
+- macOS：`.zip`
+- Linux：`.zip`
 
 ## 使用提示
 
@@ -67,13 +67,13 @@ Windows 目录版：
 npm run package:win:dir
 ```
 
-macOS：
+macOS zip：
 
 ```bash
 npm run package:mac
 ```
 
-Linux：
+Linux zip：
 
 ```bash
 npm run package:linux

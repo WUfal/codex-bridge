@@ -11,10 +11,10 @@
   "scripts": {
     "check": "node --check src/cli.js && node --check src/electron-main.js && node --check src/profile-utils.js && node --check src/provider-clone.js && node --check src/state-sync.js",
     "desktop:app": "electron .",
-    "package:win": "cross-env CSC_IDENTITY_AUTO_DISCOVERY=false electron-builder --win portable",
+    "package:win": "cross-env CSC_IDENTITY_AUTO_DISCOVERY=false electron-builder --win portable --publish never",
     "package:win:dir": "electron-packager . \"CodexBridge\" --platform=win32 --arch=x64 --out=release-packager --overwrite --prune=true --ignore=\"^/(release|release-packager|dist|exports|tmp)\"",
-    "package:mac": "electron-builder --mac zip",
-    "package:linux": "electron-builder --linux zip"
+    "package:mac": "electron-builder --mac zip --publish never",
+    "package:linux": "electron-builder --linux zip --publish never"
   },
   "engines": {
     "node": ">=20"

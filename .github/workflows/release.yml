@@ -19,13 +19,13 @@ jobs:
         include:
           - os: windows-latest
             script: package:win
-            artifact: release/*
+            artifact: release/CodexBridge-Desktop.exe
           - os: macos-latest
             script: package:mac
-            artifact: release/*
+            artifact: release/*.zip
           - os: ubuntu-latest
             script: package:linux
-            artifact: release/*
+            artifact: release/*.zip
 
     steps:
       - uses: actions/checkout@v4
@@ -51,4 +51,6 @@ jobs:
           path: artifacts
       - uses: softprops/action-gh-release@v2
         with:
-          files: artifacts/**/*
+          files: |
+            artifacts/**/*.exe
+            artifacts/**/*.zip

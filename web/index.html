@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CodexBridge</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <section class="mast">
+        <div>
+          <p class="eyebrow">Codex 会话桥</p>
+          <h1>CodexBridge</h1>
+          <p class="lede">在 API 配置和账号配置之间同步会话，也可以只选一个项目导出或导入。执行同步前请先关闭 Codex，避免数据库被正在运行的 Codex 覆盖。</p>
+        </div>
+      </section>
+
+      <section class="mode-bar">
+        <button class="mode active" data-mode="api-to-login" type="button">API 到登录</button>
+        <button class="mode" data-mode="login-to-api" type="button">登录到 API</button>
+        <button class="mode" data-mode="sync" type="button">两端同步</button>
+        <button class="mode" data-mode="export" type="button">导出聊天</button>
+        <button class="mode" data-mode="import" type="button">导入会话</button>
+      </section>
+
+      <section class="grid">
+        <section class="panel">
+          <div class="panel-title">
+            <h2>源和目标</h2>
+            <span id="modeHint">从源同步到目标</span>
+          </div>
+
+          <div class="field">
+            <label id="sourceLabel" for="sourcePath">源配置</label>
+            <div class="input-row">
+              <input id="sourcePath" spellcheck="false" placeholder="C:\\Users\\you\\.codex-api" />
+              <button id="useSourceDefault" type="button">当前</button>
+              <button id="browseSource" type="button">浏览</button>
+            </div>
+          </div>
+
+          <div class="field">
+            <label id="targetLabel" for="targetPath">目标配置</label>
+            <div class="input-row">
+              <input id="targetPath" spellcheck="false" placeholder="C:\\Users\\you\\.codex" />
+              <button id="useTargetDefault" type="button">当前</button>
+              <button id="browseTarget" type="button">浏览</button>
+            </div>
+          </div>
+
+          <div class="options">
+            <label><input id="includeArchives" type="checkbox" checked /> 包含归档</label>
+            <label><input id="includeEmpty" type="checkbox" checked /> 包含空文件</label>
+            <label><input id="overwrite" type="checkbox" /> 覆盖同路径</label>
+          </div>
+        </section>
+
+        <section class="panel">
+          <div class="panel-title">
+            <h2>项目列表</h2>
+            <div class="mini-actions">
+              <button id="refreshProjects" type="button">刷新项目</button>
+              <span id="projectCount">0</span>
+            </div>
+          </div>
+          <div id="projects" class="project-list"></div>
+        </section>
+      </section>
+
+      <section class="actions">
+        <button id="preview" class="primary" type="button">预览</button>
+        <button id="run" class="danger" type="button">执行</button>
+      </section>
+
+      <section class="panel result">
+        <div class="panel-title">
+          <h2>结果</h2>
+          <span id="status">空闲</span>
+        </div>
+        <pre id="output">先选模式，再选项目，最后点预览。</pre>
+      </section>
+    </main>
+
+    <script src="./app.js" type="module"></script>
+  </body>
+</html>

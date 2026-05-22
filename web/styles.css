@@ -1,0 +1,303 @@
+:root {
+  color-scheme: light;
+  --paper: oklch(0.965 0.008 82);
+  --ink: oklch(0.225 0.018 80);
+  --muted: oklch(0.48 0.025 78);
+  --line: oklch(0.84 0.018 82);
+  --panel: oklch(0.992 0.006 82);
+  --accent: oklch(0.58 0.125 168);
+  --accent-strong: oklch(0.46 0.115 168);
+  --warn-soft: oklch(0.93 0.035 47);
+  --shadow: 0 24px 60px oklch(0.28 0.03 80 / 0.12);
+  font-family: "Segoe UI Variable", "Segoe UI", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    linear-gradient(135deg, oklch(0.94 0.018 82), transparent 34%),
+    radial-gradient(circle at 90% 12%, oklch(0.86 0.055 168), transparent 28%),
+    var(--paper);
+  color: var(--ink);
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: var(--panel);
+  color: var(--ink);
+  cursor: pointer;
+  min-height: 40px;
+  padding: 0 14px;
+}
+
+button:hover {
+  border-color: var(--accent);
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.48;
+}
+
+input {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: oklch(0.985 0.006 82);
+  color: var(--ink);
+  min-height: 42px;
+  padding: 0 12px;
+}
+
+input:focus {
+  outline: 2px solid oklch(0.77 0.08 168);
+  outline-offset: 1px;
+}
+
+.shell {
+  width: min(1180px, calc(100vw - 32px));
+  margin: 0 auto;
+  padding: 32px 0;
+}
+
+.mast {
+  padding: 10px 0 24px;
+}
+
+.eyebrow {
+  margin: 0 0 6px;
+  color: var(--accent-strong);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+h1,
+h2 {
+  margin: 0;
+  letter-spacing: 0;
+}
+
+h1 {
+  font-size: clamp(42px, 7vw, 76px);
+  line-height: 0.92;
+}
+
+h2 {
+  font-size: 16px;
+}
+
+.lede {
+  max-width: 720px;
+  margin: 14px 0 0;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.mode-bar {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.mode {
+  min-width: 112px;
+  background: oklch(0.985 0.006 82);
+  font-weight: 720;
+}
+
+.mode.active {
+  border-color: var(--accent-strong);
+  background: oklch(0.9 0.05 168);
+  color: oklch(0.28 0.06 168);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(340px, 0.82fr);
+  gap: 18px;
+  align-items: start;
+}
+
+.panel {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: color-mix(in oklch, var(--panel), transparent 4%);
+  box-shadow: var(--shadow);
+  padding: 22px;
+}
+
+.field + .field {
+  margin-top: 18px;
+}
+
+label {
+  display: block;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 650;
+  margin-bottom: 7px;
+}
+
+.input-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  gap: 8px;
+}
+
+.options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 18px;
+  margin: 22px 0 0;
+}
+
+.options label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  color: var(--ink);
+}
+
+.options input {
+  width: 16px;
+  min-height: 16px;
+}
+
+.panel-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 16px;
+}
+
+.panel-title span {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.mini-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.mini-actions button {
+  min-height: 30px;
+  padding: 0 10px;
+  font-size: 12px;
+}
+
+.project-list {
+  display: grid;
+  gap: 8px;
+  max-height: 380px;
+  overflow: auto;
+}
+
+.project {
+  display: grid;
+  width: 100%;
+  height: auto;
+  min-height: 72px;
+  justify-items: start;
+  gap: 4px;
+  padding: 12px;
+  text-align: left;
+}
+
+.project.active {
+  border-color: var(--accent-strong);
+  background: oklch(0.93 0.035 168);
+}
+
+.project strong {
+  color: var(--ink);
+  font-size: 14px;
+}
+
+.project span {
+  color: var(--muted);
+  font-family: "Cascadia Code", Consolas, monospace;
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
+
+.project em {
+  color: var(--accent-strong);
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 720;
+}
+
+.empty {
+  border: 1px dashed var(--line);
+  border-radius: 8px;
+  color: var(--muted);
+  padding: 18px;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+  margin: 18px 0;
+}
+
+.primary {
+  border-color: var(--accent-strong);
+  background: var(--accent);
+  color: oklch(0.985 0.008 168);
+  font-weight: 760;
+}
+
+.danger {
+  border-color: oklch(0.72 0.05 34);
+  background: var(--warn-soft);
+  color: oklch(0.36 0.09 34);
+  font-weight: 720;
+}
+
+.result {
+  overflow: hidden;
+}
+
+pre {
+  margin: 0;
+  min-height: 180px;
+  overflow: auto;
+  padding: 18px;
+  color: oklch(0.32 0.03 80);
+  font-family: "Cascadia Code", Consolas, monospace;
+  font-size: 13px;
+  line-height: 1.55;
+  white-space: pre-wrap;
+}
+
+@media (max-width: 860px) {
+  .grid,
+  .input-row {
+    grid-template-columns: 1fr;
+  }
+
+  .actions,
+  .mode-bar {
+    flex-direction: column;
+  }
+}

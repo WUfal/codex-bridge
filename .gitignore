@@ -1,0 +1,29 @@
+node_modules/
+
+# Build outputs
+dist/
+release/
+release-packager/
+out/
+
+# Local migration/export data. These may contain private conversations.
+exports/
+tmp/
+*.bak
+*.bak-*
+*.sqlite
+*.sqlite-shm
+*.sqlite-wal
+*.jsonl
+
+# OS/editor noise
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*

@@ -5,6 +5,7 @@ import path from "node:path";
 import initSqlJs from "sql.js";
 import { createRequire } from "node:module";
 import { normalizeComparablePath, scanSessionFiles } from "./profile-utils.js";
+import { assertSafeSqliteWrite, writeSqliteDatabaseSafely } from "./sqlite-safety.js";
 
 const require = createRequire(import.meta.url);
 let sqlPromise;
@@ -65,7 +66,8 @@ export async function cloneProviderThreads(options, logger = console.log) {
       return { cloned: 0, planned: candidates.length };
     }
 
-    await fs.copyFile(statePath, `${statePath}.bak-${formatBackupStamp(new Date())}`);
+    await assertSafeSqliteWrite(statePath);
+
     const indexPath = path.join(profile, "session_index.jsonl");
     if (existsSync(indexPath)) {
       await fs.copyFile(indexPath, `${indexPath}.bak-${formatBackupStamp(new Date())}`);
@@ -109,7 +111,11 @@ export async function cloneProviderThreads(options, logger = console.log) {
     }
 
     if (cloned > 0) {
-      await fs.writeFile(statePath, Buffer.from(db.export()));
+      await writeSqliteDatabaseSafely(
+        statePath,
+        Buffer.from(db.export()),
+        formatBackupStamp(new Date()),
+      );
       await appendJsonl(indexPath, appendedIndex);
     }
 

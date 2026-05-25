@@ -3,6 +3,7 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import { createRequire } from "node:module";
 import initSqlJs from "sql.js";
+import { writeSqliteDatabaseSafely } from "./sqlite-safety.js";
 
 const require = createRequire(import.meta.url);
 
@@ -76,8 +77,11 @@ export async function syncThreadState(options) {
     }
 
     if (inserted > 0 && !dryRun) {
-      await fs.copyFile(targetDbPath, `${targetDbPath}.bak-${formatBackupStamp(new Date())}`);
-      await fs.writeFile(targetDbPath, Buffer.from(targetDb.export()));
+      await writeSqliteDatabaseSafely(
+        targetDbPath,
+        Buffer.from(targetDb.export()),
+        formatBackupStamp(new Date()),
+      );
     }
 
     return { inserted, skippedExisting, skippedUnselected, dryRun };
